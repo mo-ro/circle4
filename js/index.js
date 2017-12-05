@@ -1,33 +1,47 @@
 // import { setTimeout } from "timers";
 
 // トップスライドショー
-$(".top").vegas({
-  slides: [{
-      src: '../img/about2.jpg'
-    },
-    {
-      src: '../img/lock.jpg'
-    },
-    {
-      src: '../img/top.jpg'
-    },
-    {
-      src: '../img/top2.jpg'
-    }
-  ],
-  animation: 'random'
-});
+// $(".top").vegas({
+//   slides: [{
+//       src: '../img/about2.jpg'
+//     },
+//     {
+//       src: '../img/lock.jpg'
+//     },
+//     {
+//       src: '../img/top.jpg'
+//     },
+//     {
+//       src: '../img/top2.jpg'
+//     }
+//   ],
+//   animation: 'random'
+// });
 
 
 // リロード時トップに戻る
 $(window).on('load', function(){
-	$('html,body').animate({ scrollTop: 0 });
+	$('html,body').animate({ scrollTop: 0 }, 1);
 });
-var diff = 7;
+
+//ふわふわボタン
+TweenMax.to('.top-scrollButton', 1, {
+  transform: 'rotate(45deg) translate(-10px, -10px)',
+  repeat: -1,
+  yoyo: true
+})
+
+$('.top-scrollButton').click(function() {
+  $("html").animate({
+    scrollTop: $(window).height()
+  }, 700);
+});
+
+var diff = 100;
 
 
 var $svg = $('.logo').drawsvg({
-  duration: 500,
+  duration: 200,
   stagger: 20,
   easing: 'swing',
   reverse: false,
@@ -51,13 +65,12 @@ setTimeout(function() {
 }, 2000);
 
 function opening(diff) {
-  console.log(diff + "px")
   TweenMax.to('.opening-lists', .2, {
-    top: diff + "rem",
+    top: diff + "%",
     delay: .6,
     onComplete: function() {
-      if(diff != -7) {
-        diff -= 7;
+      if(diff >= 0) {
+        diff -= 100;
         opening(diff);
       }else {
         TweenMax.to('.opening-lists', .5, {
@@ -89,7 +102,7 @@ $(window).scroll(function () {
     $(document).on(scroll_event, function (e) {
       e.preventDefault();
     });
-    $("html").animate({
+    $("html, body").animate({
       scrollTop: 0
     }, 700);
     // $("main").css("top", 0);
@@ -105,7 +118,7 @@ $(window).scroll(function () {
     $(document).on(scroll_event, function (e) {
       e.preventDefault();
     });
-    $("html").animate({
+    $("html, body").animate({
       scrollTop: $(window).height()
     }, 700);
     // $("main").css("top", 0);
@@ -118,6 +131,11 @@ $(window).scroll(function () {
   }
   if (isScrolledIntoView($('.about')) == true && !intoFlg) {
     intoFlg = true;
+    TweenMax.to('.about-left', .8, {
+      opacity: 1,
+      // delay: .3,
+      transform: 'translate(0, 0)'
+    });
     TweenMax.to(".about-right-filter", .8, {
       left: 0,
       opacity: 1,
@@ -125,6 +143,10 @@ $(window).scroll(function () {
     });
     TweenMax.to(".about-right", 0, {
       backgroundImage: "url('../img/about2.jpg')",
+      delay: .8
+    });
+    TweenMax.to(".about-right2", 0, {
+      backgroundImage: "url('../img/about6.jpg')",
       delay: .8
     });
     // $(".about-right").css("background-image", "url('../img/about2.jpg')")

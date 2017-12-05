@@ -110,7 +110,7 @@ body {
     overflow: hidden;
     font-family: 'Alfa Slab One', cursive; }
     .top-opening ul {
-      position: absolute;
+      position: relative;
       width: 100%;
       height: 100%;
       margin: 0 auto;
@@ -124,9 +124,37 @@ body {
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center;
-      top: 14rem; }
+      top: 200%; }
     .top-opening li {
       text-align: center; }
+  .top-scrollButton {
+    -webkit-transform: rotate(45deg) translate(0, 0);
+            transform: rotate(45deg) translate(0, 0);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 60px;
+    bottom: 50px;
+    border-right: 4px solid #fafafa;
+    border-bottom: 4px solid #fafafa;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    cursor: pointer; }
+    .top-scrollButton::after {
+      color: #fafafa;
+      font-size: 1.6rem;
+      content: "scroll";
+      -webkit-transform: rotate(-45deg) translate(0, -15px);
+              transform: rotate(-45deg) translate(0, -15px);
+      text-align: center;
+      position: absolute; }
 
 .logo {
   width: 35%;
@@ -153,25 +181,45 @@ main {
   z-index: 1;
   background: #fff;
   background: #f6f0ea;
-  padding: 50px;
+  padding: 0 50px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
 .about {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  height: 500px;
-  color: #4a4a4a;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  color: #4a4a4a;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+  padding: 50px; }
+  .about-down, .about-up {
+    width: 100%;
+    height: 50%;
+    margin: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
   .about-left {
     width: 50%;
     height: 100%;
-    padding: 100px;
+    padding: 50px;
+    opacity: 0;
+    -webkit-transform: translate(0, 50px);
+            transform: translate(0, 50px);
     -webkit-box-sizing: border-box;
             box-sizing: border-box; }
-  .about-right {
+  .about-right, .about-right2 {
     width: 50%;
     height: 100%;
     position: relative;
@@ -179,7 +227,7 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; }
-    .about-right-filter {
+    .about-right-filter, .about-right2-filter {
       width: 100%;
       height: 100%;
       background-color: #F57C00;
