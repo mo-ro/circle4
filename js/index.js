@@ -24,12 +24,12 @@ $(window).on('load', function(){
 	$('html,body').animate({ scrollTop: 0 }, 1);
 });
 
-//ふわふわボタン
-TweenMax.to('.top-scrollButton', 1, {
-  transform: 'rotate(45deg) translate(-10px, -10px)',
-  repeat: -1,
-  yoyo: true
-})
+// ふわふわボタン
+// TweenMax.to('.top-scrollButton', .8, {
+//   transform: 'rotate(45deg) translate(-8px, -8px)',
+//   repeat: -1,
+//   yoyo: true
+// })
 
 $('.top-scrollButton').click(function() {
   $("html").animate({
@@ -77,8 +77,16 @@ function opening(diff) {
           opacity: 0,
           delay: .8,
           onComplete: function() {
-            $svg.drawsvg('animate');
-
+            // $svg.drawsvg('animate');
+            TweenMax.to(".top-filter", 2, {
+              backgroundColor: "rgba(0, 0, 0, 0.65)",
+              // delay: .
+            });
+            TweenMax.to(".top-overlay2", 1, {
+              left: "100%",
+              // delay: .5,
+              ease: Expo.easeOut
+            });
           }
         })
       }
