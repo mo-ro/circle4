@@ -1,22 +1,22 @@
 // import { setTimeout } from "timers";
 
 // トップスライドショー
-// $(".top").vegas({
-//   slides: [{
-//       src: './img/about2.jpg'
-//     },
-//     {
-//       src: './img/lock.jpg'
-//     },
-//     {
-//       src: './img/top.jpg'
-//     },
-//     {
-//       src: './img/top2.jpg'
-//     }
-//   ],
-//   animation: 'random'
-// });
+$(".top").vegas({
+  slides: [{
+      src: './img/about2.jpg'
+    },
+    {
+      src: './img/lock.jpg'
+    },
+    {
+      src: './img/top.jpg'
+    },
+    {
+      src: './img/top2.jpg'
+    }
+  ],
+  animation: 'random'
+});
 
 
 // リロード時トップに戻る
@@ -25,11 +25,11 @@ $(window).on('load', function(){
 });
 
 // ふわふわボタン
-// TweenMax.to('.top-scrollButton', .8, {
-//   transform: 'rotate(45deg) translate(-8px, -8px)',
-//   repeat: -1,
-//   yoyo: true
-// })
+TweenMax.to('.top-scrollButton', .8, {
+  transform: 'rotate(45deg) translate(-8px, -8px)',
+  repeat: -1,
+  yoyo: true
+})
 
 $('.top-scrollButton').click(function() {
   $("html").animate({
@@ -100,6 +100,7 @@ opening(diff);
 var before = $(window).scrollTop();
 var flg = false;
 var intoFlg = false;
+var detailFlg = false;
 var winHeight = $(window).height();
 
 $(window).scroll(function () {
@@ -170,6 +171,23 @@ $(window).scroll(function () {
       opacity: 1,
       delay: 1
     });
+  }
+  if(isScrolledIntoView($('.detail')) && !detailFlg) {
+    detailFlg = true;
+    TweenMax.to(".detail-filter", .8, {
+      left: 0,
+      opacity: 1,
+      ease: Power4.easeIn
+    });
+    TweenMax.to(".detail-filter", .3, {
+      left: "100%",
+      opacity: 1,
+      delay: 1
+    });
+    TweenMax.to(".detail-img", 0, {
+      display: 'block',
+      delay: .8
+    })
   }
 
   if(isScrolledIntoView($('.news')) && !newsFlg) {
