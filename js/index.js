@@ -38,31 +38,32 @@ $('.top-scrollButton').click(function() {
 });
 
 var diff = 100;
+var newsFlg = false;
 
 
-var $svg = $('.logo').drawsvg({
-  duration: 200,
-  stagger: 20,
-  easing: 'swing',
-  reverse: false,
-  callback: function () {
-    TweenMax.to(".logo", .3, {
-      fill: "#fff"
-    });
-    TweenMax.to(".top-filter", 2, {
-      backgroundColor: "rgba(0, 0, 0, 0.65)",
-      delay: .8
-    });
-    TweenMax.to(".top-overlay2", 1, {
-      left: "100%",
-      delay: .8,
-      ease: Expo.easeOut
-    });
-  }
-});
+// var $svg = $('.logo').drawsvg({
+//   duration: 200,
+//   stagger: 20,
+//   easing: 'swing',
+//   reverse: false,
+//   callback: function () {
+//     TweenMax.to(".logo", .3, {
+//       fill: "#fff"
+//     });
+//     TweenMax.to(".top-filter", 2, {
+//       backgroundColor: "rgba(0, 0, 0, 0.65)",
+//       delay: .8
+//     });
+//     TweenMax.to(".top-overlay2", 1, {
+//       left: "100%",
+//       delay: .8,
+//       ease: Expo.easeOut
+//     });
+//   }
+// });
 
-setTimeout(function() {
-}, 2000);
+// setTimeout(function() {
+// }, 2000);
 
 function opening(diff) {
   TweenMax.to('.opening-lists', .2, {
@@ -79,7 +80,7 @@ function opening(diff) {
           onComplete: function() {
             // $svg.drawsvg('animate');
             TweenMax.to(".top-filter", 2, {
-              backgroundColor: "rgba(0, 0, 0, 0.65)",
+              backgroundColor: "rgba(0, 0, 0, 0.45)",
               // delay: .
             });
             TweenMax.to(".top-overlay2", 1, {
@@ -99,12 +100,14 @@ opening(diff);
 var before = $(window).scrollTop();
 var flg = false;
 var intoFlg = false;
+var winHeight = $(window).height();
 
 $(window).scroll(function () {
   var after = $(window).scrollTop();
+  var scrl = $(window).scrollTop();
 
   // console.log(after)
-  if (before > after && $(window).scrollTop() <= $(window).height() && !flg) {
+  if (before > after && $(window).scrollTop() <= winHeight && !flg) {
     flg = true;
     var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
     $(document).on(scroll_event, function (e) {
@@ -137,9 +140,9 @@ $(window).scroll(function () {
       $(document).off(scroll_event);
     }, 900)
   }
-  if (isScrolledIntoView($('.about')) == true && !intoFlg) {
+  if (isScrolledIntoView($('.about')) && !intoFlg) {
     intoFlg = true;
-    TweenMax.to('.about-left', .8, {
+    TweenMax.to('.about-left', 1, {
       opacity: 1,
       // delay: .3,
       transform: 'translate(0, 0)'
@@ -169,7 +172,51 @@ $(window).scroll(function () {
     });
   }
 
+  if(isScrolledIntoView($('.news')) && !newsFlg) {
+    newsFlg = true;
+    console.log(isScrolledIntoView($('.news')))
+    TweenMax.to('.news-list:nth-child(1)', .8, {
+      opacity: 1,
+      transform: 'translate(0, 0)'
+    });
+    TweenMax.to('.news-list:nth-child(2)', .8, {
+      opacity: 1,
+      transform: 'translate(0, 0)',
+      delay: .2
+    });
+    TweenMax.to('.news-list:nth-child(3)', .8, {
+      opacity: 1,
+      transform: 'translate(0, 0)',
+      delay: .4
+    });
+  }
+
+  if(scrl >= winHeight) {
+    TweenMax.to('.Side-navigation', .3, {
+      left: '95%'
+    });
+    TweenMax.to('.logo', 0, {
+      position: 'fixed'
+    })
+  }else {
+    TweenMax.to('.Side-navigation', .3, {
+      left: '100%'
+    })
+    TweenMax.to('.logo', 0, {
+      position: 'absolute'
+    })
+  }
+
   before = after;
+});
+
+//サイドメニュークリックイベント
+$('a[href^="."]').click(function() {
+  var href= $(this).attr("href");
+  var target = $(href == "" ? 'html' : href);
+  var position = target.offset().top;
+  $('body,html').animate({scrollTop:position+1}, 450, 'swing');
+  return false;
 });
 
 function isScrolledIntoView(elem) {
@@ -178,6 +225,7 @@ function isScrolledIntoView(elem) {
 
   var elemTop = $(elem).offset().top;
   var elemBottom = elemTop + $(elem).height();
+  // console.log((elemBottom <= docViewBottom) && (elemTop >= docViewTop))
 
-  return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+  return ((elemTop >= docViewTop) && (elemBottom <= docViewBottom));
 }
