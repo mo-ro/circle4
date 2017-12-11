@@ -1,22 +1,22 @@
 // import { setTimeout } from "timers";
 
 // トップスライドショー
-$(".top").vegas({
-  slides: [{
-      src: './img/about2.jpg'
-    },
-    {
-      src: './img/lock.jpg'
-    },
-    {
-      src: './img/top.jpg'
-    },
-    {
-      src: './img/top2.jpg'
-    }
-  ],
-  animation: 'random'
-});
+// $(".top").vegas({
+//   slides: [{
+//       src: './img/about2.jpg'
+//     },
+//     {
+//       src: './img/lock.jpg'
+//     },
+//     {
+//       src: './img/top.jpg'
+//     },
+//     {
+//       src: './img/top2.jpg'
+//     }
+//   ],
+//   animation: 'random'
+// });
 
 
 // リロード時トップに戻る
@@ -25,11 +25,11 @@ $(window).on('load', function(){
 });
 
 // ふわふわボタン
-TweenMax.to('.top-scrollButton', .8, {
-  transform: 'rotate(45deg) translate(-8px, -8px)',
-  repeat: -1,
-  yoyo: true
-})
+// TweenMax.to('.top-scrollButton', .8, {
+//   transform: 'rotate(45deg) translate(-8px, -8px)',
+//   repeat: -1,
+//   yoyo: true
+// })
 
 $('.top-scrollButton').click(function() {
   $("html").animate({
