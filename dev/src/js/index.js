@@ -109,42 +109,40 @@ $(window).scroll(function () {
   var scrl = $(window).scrollTop();
 
   // console.log(after)
-  if (before > after && $(window).scrollTop() <= winHeight && !flg) {
-    flg = true;
-    var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
-    $(document).on(scroll_event, function (e) {
-      e.preventDefault();
-    });
-    $("html, body").animate({
-      scrollTop: 0
-    }, 700);
-    // $("main").css("top", 0);
+  // if (before > after && $(window).scrollTop() <= winHeight && !flg) {
+  //   flg = true;
+  //   var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
+  //   $(document).on(scroll_event, function (e) {
+  //     e.preventDefault();
+  //   });
+  //   $("html, body").animate({
+  //     scrollTop: 0
+  //   }, 700);
 
-    var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
-    setTimeout(function () {
-      $(document).off(scroll_event);
-      flg = false;
-    }, 900)
-  } else if (before < after && $(window).scrollTop() > 0 && $(window).scrollTop() < 300 && !flg) {
-    flg = true;
-    var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
-    $(document).on(scroll_event, function (e) {
-      e.preventDefault();
-    });
-    $("html, body").animate({
-      scrollTop: $(window).height()
-    }, 700);
-    TweenMax.to('main', 1, {
-      paddingTop: '20px'
-      // delay: .3
-    });
+  //   var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
+  //   setTimeout(function () {
+  //     $(document).off(scroll_event);
+  //     flg = false;
+  //   }, 900)
+  // } else if (before < after && $(window).scrollTop() > 0 && $(window).scrollTop() < 300 && !flg) {
+  //   flg = true;
+  //   var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
+  //   $(document).on(scroll_event, function (e) {
+  //     e.preventDefault();
+  //   });
+  //   $("html, body").animate({
+  //     scrollTop: $(window).height()
+  //   }, 700);
+  //   TweenMax.to('main', 1, {
+  //     paddingTop: '20px'
+  //   });
 
-    var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
-    setTimeout(function () {
-      flg = false;
-      $(document).off(scroll_event);
-    }, 900)
-  }
+  //   var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
+  //   setTimeout(function () {
+  //     flg = false;
+  //     $(document).off(scroll_event);
+  //   }, 900)
+  // }
   if (isScrolledIntoView($('.about')) && !intoFlg) {
     intoFlg = true;
     TweenMax.to('.about-left', 1, {
