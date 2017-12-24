@@ -1,35 +1,35 @@
 // import { setTimeout } from "timers";
 
 // トップスライドショー
-// $(".top").vegas({
-//   slides: [{
-//       src: './img/about2.jpg'
-//     },
-//     {
-//       src: './img/lock.jpg'
-//     },
-//     {
-//       src: './img/top.jpg'
-//     },
-//     {
-//       src: './img/top2.jpg'
-//     }
-//   ],
-//   animation: 'random'
-// });
+$(".top").vegas({
+  slides: [{
+      src: './img/about2.jpg'
+    },
+    {
+      src: './img/lock.jpg'
+    },
+    {
+      src: './img/top.jpg'
+    },
+    {
+      src: './img/top2.jpg'
+    }
+  ],
+  animation: 'random'
+});
 
 
 // リロード時トップに戻る
-$(window).on('load', function(){
-	$('html,body').animate({ scrollTop: 0 }, 1);
-});
+// $(window).on('load', function(){
+// 	$('html,body').animate({ scrollTop: 0 }, 1);
+// });
 
 // ふわふわボタン
-// TweenMax.to('.top-scrollButton', .8, {
-//   transform: 'rotate(45deg) translate(-8px, -8px)',
-//   repeat: -1,
-//   yoyo: true
-// })
+TweenMax.to('.top-scrollButton', .8, {
+  transform: 'rotate(45deg) translate(-8px, -8px)',
+  repeat: -1,
+  yoyo: true
+})
 
 $('.top-scrollButton').click(function() {
   $("html").animate({
@@ -102,6 +102,7 @@ var flg = false;
 var intoFlg = false;
 var detailFlg = false;
 var winHeight = $(window).height();
+var winWidth = $(window).width();
 var topFlg = false;
 
 $(window).scroll(function () {
@@ -143,73 +144,124 @@ $(window).scroll(function () {
   //     $(document).off(scroll_event);
   //   }, 900)
   // }
-  if (isScrolledIntoView($('.about')) && !intoFlg) {
-    intoFlg = true;
-    TweenMax.to('.about-left', 1, {
-      opacity: 1,
-      // delay: .3,
-      transform: 'translate(0, 0)'
+if(winWidth > 900){
+  if(scrl > 300 && scrl < 1100) {
+    TweenMax.to('.about', .3, {
+          right: 0,
+          ease: Power0.easeNone
     });
-    TweenMax.to(".about-right-filter", .8, {
-      left: 0,
-      opacity: 1,
-      ease: Power4.easeIn
-    });
-    TweenMax.to(".about-right", 0, {
-      backgroundImage: "url('./img/about2.jpg')",
-      delay: .8
-    });
-    TweenMax.to(".about-right2", 0, {
-      backgroundImage: "url('./img/about6.jpg')",
-      delay: .8
-    });
-    // $(".about-right").css("background-image", "url('../img/about2.jpg')")
-    TweenMax.to(".about-dancing", 1, {
-      color: "#F57C00",
-      delay: .8
-    });
-    TweenMax.to(".about-right-filter", .3, {
-      left: "100%",
-      opacity: 1,
-      delay: 1
+  }else {
+    TweenMax.to('.about', .3, {
+      right: '96%',
+      ease: Power0.easeNone
     });
   }
-  if(isScrolledIntoView($('.detail')) && !detailFlg) {
-    detailFlg = true;
-    TweenMax.to(".detail-filter", .8, {
-      left: 0,
-      opacity: 1,
-      ease: Power4.easeIn
-    });
-    TweenMax.to(".detail-filter", .3, {
-      left: "100%",
-      opacity: 1,
-      delay: 1
-    });
-    TweenMax.to(".detail-img", 0, {
-      display: 'block',
-      delay: .8
-    })
+  if(scrl > 1100 && scrl < 1600) {
+    TweenMax.to('.detail', .3, {
+      right: 0,
+      ease: Power0.easeNone
+});
+  }else {
+    TweenMax.to('.detail', .3, {
+      right: '96%',
+      ease: Power0.easeNone
+});
   }
+  if(scrl > 1600 && scrl < 2100) {
+    TweenMax.to('.news', .3, {
+      right: 0,
+      ease: Power0.easeNone
+});
+  }else {
+    TweenMax.to('.news', .3, {
+      right: '96%',
+      ease: Power0.easeNone
+});
+  }
+  if(scrl > 2100) {
+    TweenMax.to('.genre', .3, {
+      right: 0,
+      ease: Power0.easeNone
+});
+  }else {
+    TweenMax.to('.genre', .3, {
+      right: '96%',
+      ease: Power0.easeNone
+});
+  }
+}
 
-  if(isScrolledIntoView($('.news')) && !newsFlg) {
-    newsFlg = true;
-    console.log(isScrolledIntoView($('.news')))
-    TweenMax.to('.news-list:nth-child(1)', .8, {
-      opacity: 1,
-      transform: 'translate(0, 0)'
-    });
-    TweenMax.to('.news-list:nth-child(2)', .8, {
-      opacity: 1,
-      transform: 'translate(0, 0)',
-      delay: .2
-    });
-    TweenMax.to('.news-list:nth-child(3)', .8, {
-      opacity: 1,
-      transform: 'translate(0, 0)',
-      delay: .4
-    });
-  }
+  // if (isScrolledIntoView($('.about')) && !intoFlg) {
+  //   TweenMax.to('.about', .8, {
+  //     right: 0,
+  //     ease: Power0.easeNone
+  //   })
+  //   intoFlg = true;
+  //   TweenMax.to('.about-left', 1, {
+  //     opacity: 1,
+  //     // delay: .3,
+  //     transform: 'translate(0, 0)'
+  //   });
+  //   TweenMax.to(".about-right-filter", .8, {
+  //     left: 0,
+  //     opacity: 1,
+  //     ease: Power4.easeIn
+  //   });
+  //   TweenMax.to(".about-right", 0, {
+  //     backgroundImage: "url('./img/about2.jpg')",
+  //     delay: .8
+  //   });
+  //   TweenMax.to(".about-right2", 0, {
+  //     backgroundImage: "url('./img/about6.jpg')",
+  //     delay: .8
+  //   });
+  //   // $(".about-right").css("background-image", "url('../img/about2.jpg')")
+  //   TweenMax.to(".about-dancing", 1, {
+  //     color: "#F57C00",
+  //     delay: .8
+  //   });
+  //   TweenMax.to(".about-right-filter", .3, {
+  //     left: "100%",
+  //     opacity: 1,
+  //     delay: 1
+  //   });
+  // }
+  // if(isScrolledIntoView($('.detail')) && !detailFlg) {
+  //   detailFlg = true;
+  //   TweenMax.to(".detail-filter", .8, {
+  //     left: 0,
+  //     opacity: 1,
+  //     ease: Power4.easeIn
+  //   });
+  //   TweenMax.to(".detail-filter", .3, {
+  //     left: "100%",
+  //     opacity: 1,
+  //     delay: 1
+  //   });
+  //   TweenMax.to(".detail-img", 0, {
+  //     display: 'block',
+  //     delay: .8
+  //   })
+  // }
+
+  // if(isScrolledIntoView($('.news')) && !newsFlg) {
+  //   newsFlg = true;
+  //   console.log(isScrolledIntoView($('.news')))
+  //   TweenMax.to('.news-list:nth-child(1)', .8, {
+  //     opacity: 1,
+  //     transform: 'translate(0, 0)'
+  //   });
+  //   TweenMax.to('.news-list:nth-child(2)', .8, {
+  //     opacity: 1,
+  //     transform: 'translate(0, 0)',
+  //     delay: .2
+  //   });
+  //   TweenMax.to('.news-list:nth-child(3)', .8, {
+  //     opacity: 1,
+  //     transform: 'translate(0, 0)',
+  //     delay: .4
+  //   });
+  // }
 
   if(scrl >= winHeight) {
     TweenMax.to('.Side-navigation', .3, {
