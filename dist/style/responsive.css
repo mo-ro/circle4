@@ -90,7 +90,8 @@
       padding-left: 10px;
       min-width: 100px; }
   .news {
-    padding: 10px; }
+    padding: 10px;
+    height: auto; }
     .news-title {
       -webkit-transform: translate(0, 0);
               transform: translate(0, 0);
@@ -108,7 +109,8 @@
     .news .news-list:last-child {
       display: none; }
   .genre {
-    padding: 10px; }
+    padding: 10px;
+    height: auto; }
     .genre-title {
       -webkit-transform: translate(0, 0);
               transform: translate(0, 0);

@@ -131,6 +131,7 @@
   }
   .news {
     padding: 10px;
+    height: auto;
     &-title {
       transform: translate(0, 0);
       font-size: 6rem;
@@ -155,6 +156,7 @@
   }
   .genre {
     padding: 10px;
+    height: auto;
     &-title {
       transform: translate(0, 0);
       font-size: 6rem;

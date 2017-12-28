@@ -4,7 +4,6 @@ html {
 
 body {
   color: #313131;
-  overflow-scrolling: none;
   width: 100vw;
   min-width: 320px;
   font-size: 16px;
@@ -340,8 +339,8 @@ main {
       height: 8px;
       position: absolute;
       bottom: -3px;
-      background: -webkit-gradient(linear, left top, right top, from(#f47a00), to(transparent));
-      background: linear-gradient(90deg, #f47a00, transparent);
+      background: -webkit-gradient(linear, left top, right top, from(#f47a00), to(rgba(244, 122, 0, 0)));
+      background: linear-gradient(90deg, #f47a00, rgba(244, 122, 0, 0));
       z-index: -1; }
   .about-title span:nth-child(2) {
     font-size: 1.2rem;
@@ -530,7 +529,7 @@ main {
       .news-topic span:first-child {
         border-right: 1px solid #b4b4b4; }
   .news-content {
-    padding: 5px;
+    padding: 10px;
     line-height: 2rem;
     -webkit-box-sizing: border-box;
             box-sizing: border-box; }
@@ -582,6 +581,7 @@ main {
   .genre-list {
     width: 500px;
     width: 45%;
+    display: block;
     border: 1px solid #919191;
     margin-bottom: 50px;
     display: -webkit-box;
@@ -594,7 +594,8 @@ main {
     -webkit-transition: .3s;
     transition: .3s;
     position: relative;
-    cursor: pointer; }
+    cursor: pointer;
+    text-decoration: none; }
     .genre-list:active {
       background-color: rgba(0, 0, 0, 0.1); }
       .genre-list:active .genre-image {
@@ -617,18 +618,25 @@ main {
     line-height: 2rem;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    font-size: 1.3rem; }
+    font-size: 1.3rem;
+    color: #333; }
     .genre-content span {
       font-size: 2.4rem;
       color: #0044cc;
       font-weight: 600;
       padding: 1px 0;
       margin-bottom: 5px;
-      display: block;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       border-bottom: 1px solid #333; }
   .genre-link {
     color: #cd201f;
-    font-size: 2.4rem; }
+    font-size: 2.4rem;
+    margin-left: 10px; }
 
 footer {
   height: 200px;
